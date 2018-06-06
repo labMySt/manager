@@ -1,0 +1,11 @@
+{
+  "Customer": {
+    "sessionConf":{
+        "secret": "keyboard cat",
+        "store": "myStore",
+        "resave": "false",
+        "proxy": "true",
+        "saveUninitialized": "false"
+      }
+    }
+  }

@@ -1,0 +1,3 @@
+export const AUTH_USER = "AUTH_USER";
+export const AUTH_USER_FATCHED = "AUTH_USER_FATCHED";
+export const AUTH_USER_ERROR = "AUTH_USER_ERROR";
