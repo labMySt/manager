@@ -7,10 +7,12 @@ const passport = require("passport");
 const session = require('express-session');
 const logger = require('morgan');
 const config = require('config');
-var SequelizeStore = require("connect-session-sequelize")(session.Store);
+const flash = require('connect-flash');
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 //------------------------------------------------------------------------------
 const sessoinConf = config.get('Customer.sessionConf');
 const db = require("./models/index");
+const auth = require('./routes/auth');
 //------------------------------------------------------------------------------
 
 const indexRouter = require('./routes/index');
@@ -37,9 +39,9 @@ app.use(session({
   resave: false,
   proxy: true,
   saveUninitialized: false
-
 }));
 myStore.sync();
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
@@ -47,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //--------------------------------routes----------------------------------------
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth',auth);
 //------------------------------------------------------------------------------
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

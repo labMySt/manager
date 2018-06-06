@@ -9,15 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: DataTypes.STRING
   }, {});
-  User.associate = function(models) {
-    // associations can be defined here
-  };
+
   User.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   };
-  User.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.local.password);
+  User.prototype.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
   };
-
+  User.associate = function(models) {
+    // associations can be defined here
+  };
   return User;
 };

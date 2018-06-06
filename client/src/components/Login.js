@@ -8,7 +8,7 @@ class Login extends Component {
           <div className="row">
             <div className="col-md-6">
               <h2 className="display-4 mr-4">Login</h2>
-              <form>
+              <form action="/auth/login" method="post">
               <div className="form-group">
                 <label>Email address</label>
                 <input type="email" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="email"/>
